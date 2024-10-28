@@ -4,6 +4,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="data" scope="session" class="model.Data"/>
 <div class="history">
     <table id="history_table">
         <thead>
@@ -18,11 +19,11 @@
         </thead>
         <tbody>
         <%
-            Data data = (Data) request.getSession().getAttribute("data");
-            if (data == null) {
-                data = new Data();
-                request.getSession().setAttribute("data", data);
-            }
+//            Data data = (Data) request.getSession().getAttribute("data");
+//            if (data == null) {
+//                data = new Data();
+//                request.getSession().setAttribute("data", data);
+//            }
             DecimalFormat df = new DecimalFormat("0.00");
             List<PointBean> arr = data.getData();
             for (int i = arr.size() - 1; i >= 0; i--) {

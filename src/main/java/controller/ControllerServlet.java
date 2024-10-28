@@ -1,8 +1,10 @@
 package controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
+import model.Data;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,6 +12,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ControllerServlet extends HttpServlet {
+    @EJB
+    private Data data;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getQueryString() == null) {

@@ -1,6 +1,7 @@
 package controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import model.Data;
@@ -11,6 +12,9 @@ import java.io.PrintWriter;
 import java.time.LocalDateTime;
 
 public class AreaCheckServlet extends HttpServlet {
+
+    @EJB
+    private Data data;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,11 +36,11 @@ public class AreaCheckServlet extends HttpServlet {
         long endTime = System.nanoTime() / 1000;
         pointBean.setCalculationTime(endTime - startTime);
 
-        Data data = (Data) req.getSession().getAttribute("data");
-        if (data == null) {
-            data = new Data();
-            req.getSession().setAttribute("data", data);
-        }
+//        Data data = (Data) req.getSession().getAttribute("data");
+//        if (data == null) {
+//            data = new Data();
+//            req.getSession().setAttribute("data", data);
+//        }
         data.addRPoint(pointBean);
         req.getSession().setAttribute("data", data);
         if (redirect) {
